@@ -223,6 +223,14 @@
           </li>
           <li>
             <a href="#master-data" class="toc-h1 toc-link" data-title="master-data">Master Data</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#organisations-object-data-fields" class="toc-h2 toc-link" data-title="organisations-object-data-fields">Organisations object data fields</a>
+                  </li>
+                  <li>
+                    <a href="#branch-object-data-fields" class="toc-h2 toc-link" data-title="branch-object-data-fields">Branch object data fields</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#api" class="toc-h1 toc-link" data-title="api">API</a>
@@ -232,6 +240,9 @@
                   </li>
                   <li>
                     <a href="#orders" class="toc-h2 toc-link" data-title="orders">Orders</a>
+                  </li>
+                  <li>
+                    <a href="#get-orders-order_id" class="toc-h2 toc-link" data-title="code-get-orders-order_id-code"><code>GET /orders/{order_id}/</code></a>
                   </li>
                   <li>
                     <a href="#webhooks" class="toc-h2 toc-link" data-title="webhooks">Webhooks</a>
@@ -246,7 +257,7 @@
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='#'>We shall </a></li>
             <li><a href='#'> &copy;2018 Yum Deliveries LTD</a></li>
         </ul>
     </div>
@@ -292,6 +303,74 @@
 <p>After organisation and branches information is configured, clients are issued with a  username and password for consuming the API. Any information posted using these credentials, is associated to the respective organisations and branches.</p>
 
 <p>The branches are saved together with their addresses which are used when requesting for a rider to the branch.</p>
+<h2 id='organisations-object-data-fields'>Organisations object data fields</h2>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>The name of the organisation eg KFC</td>
+</tr>
+<tr>
+<td>mapping_id</td>
+<td>the client ID of the organisation e.g 1 . Incase where we have one organisation a default can be agreed on</td>
+</tr>
+<tr>
+<td>description</td>
+<td>an optional description of the organisation</td>
+</tr>
+</tbody></table>
+<h2 id='branch-object-data-fields'>Branch object data fields</h2>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>The name of the organisation eg KFC</td>
+</tr>
+<tr>
+<td>mapping_id</td>
+<td>the client ID of the organisation e.g 1 . Incase where we have one organisation a default can be agreed on</td>
+</tr>
+<tr>
+<td>description</td>
+<td>an optional description of the organisation</td>
+</tr>
+<tr>
+<td>organisation</td>
+<td>The branch the organisation belongs to</td>
+</tr>
+<tr>
+<td>phone_number</td>
+<td>An optional contact number to the branch</td>
+</tr>
+<tr>
+<td>location</td>
+<td>The location object of the branch</td>
+</tr>
+<tr>
+<td>location.lat</td>
+<td>The map latitude of the branchs location</td>
+</tr>
+<tr>
+<td>location.log</td>
+<td>The map longitude of the branchs location</td>
+</tr>
+<tr>
+<td>location.address</td>
+<td>The address info with format of House Number, Street Direction, Street Name, Street Suffix, City, State, Zip, Country</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+  The client will share the master data items in a an excel/csv document for the automated population to the database.
+</aside>
 <h1 id='api'>API</h1>
 <p>We offer a RESTful api to interact with the logistics platform, that speaks exclusively in JSON. Any request to the API endpoints need to be authenticated.
 A Sandbox will be provided for testing the API and in order to facilitate the integration.</p>
@@ -655,8 +734,6 @@ A succesfull call to any of the endpoints above returns a token e.g
       </span><span class="s2">"rider"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
       </span><span class="s2">"created_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-31 13:09:30.928587+00:00"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"branch_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KFC Waiyaki Way"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"payment_method"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"payment_method_display"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pay Cash"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"branch_address"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1.258591700000000"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"log"</span><span class="p">:</span><span class="w"> </span><span class="s2">"36.781353300000000"</span><span class="p">,</span><span class="w">
@@ -679,8 +756,6 @@ A succesfull call to any of the endpoints above returns a token e.g
           </span><span class="s2">"otherinstructions"</span><span class="p">:</span><span class="w"> </span><span class="s2">" RIGHT BEHIND WEST END TOWERS."</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"direct_order"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"direct_order_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"updated_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-01-31T13:10:24.615336Z"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='order-states-description'>Order States Description</h3>
@@ -739,7 +814,7 @@ A succesfull call to any of the endpoints above returns a token e.g
 <td>UNPAID. The order hasn&#39;t been paid for yet, rider to collect payment upon delivery</td>
 </tr>
 </tbody></table>
-<h3 id='response-2'>Response</h3>
+<h3 id='extra-fields-of-order-object-in-response'>Extra fields of order object in response</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -747,7 +822,49 @@ A succesfull call to any of the endpoints above returns a token e.g
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>state_display</td>
+<td>string</td>
+<td>The description of the order state integer representation</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>string(uuid)</td>
+<td>Yum logistics order id</td>
+</tr>
+<tr>
+<td>source</td>
+<td>id</td>
+<td>The db id of the API that posted the order</td>
+</tr>
+<tr>
+<td>rider</td>
+<td>object</td>
+<td>Rider object: null if no rider assigned rider object if assigned</td>
+</tr>
+<tr>
+<td>branch_name</td>
+<td>string</td>
+<td>The name of the branch for the order</td>
+</tr>
+<tr>
+<td>created_date</td>
+<td>string</td>
+<td>Order creation date with timezone</td>
+</tr>
+<tr>
+<td>updated_date</td>
+<td>string</td>
+<td>Order update date with timezone</td>
+</tr>
+<tr>
+<td>payment_status_display</td>
+<td>string</td>
+<td>Order payment status description</td>
+</tr>
 </tbody></table>
+<h2 id='get-orders-order_id'><code>GET /orders/{order_id}/</code></h2>
+<p>Gets a specific order</p>
 <h2 id='webhooks'>Webhooks</h2>
 <blockquote>
 <p>Example POST request</p>
@@ -800,7 +917,7 @@ curl -X GET --header <span class="s1">'Accept: application/json'</span> --header
 </code></pre>
 <p>To check a rider availability for a client checking out, we need to send the information of the  branch the client is checking out.
 <code>GET /api/v1/available-riders/{branch_id}/</code></p>
-<h4 id='response-3'>Response</h4>
+<h4 id='response-2'>Response</h4>
 <blockquote>
 <p>Response status_code: 200 OK</p>
 </blockquote>
@@ -825,7 +942,7 @@ curl -X GET --header <span class="s1">'Accept: application/json'</span> --header
   </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>Returns list of available riders ordered by the proximity to the store from in a ascending order. The rider object is response has the following fields.</p>
+<p>Returns list of available riders ordered by the proximity to the store in an ascending order. The rider object in the response has the following fields.</p>
 
 <table><thead>
 <tr>
